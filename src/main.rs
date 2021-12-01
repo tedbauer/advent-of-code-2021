@@ -55,7 +55,7 @@ fn main() {
 
     match name.as_str() {
         "day1part1" => part1(),
-        "day2part1" => part2(),
+        "day1part2" => part2(),
         _ => println!("nothing with that name")
     }
 }
