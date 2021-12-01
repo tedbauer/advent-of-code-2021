@@ -1,6 +1,4 @@
-# Advent of Code 2021
-
-https://adventofcode.com/2021
+# [Advent of Code 2021](https://adventofcode.com/2021)
 
 ```
 cat inputs/day1_big_input.txt | cargo run -- --name day1part1       # Day 1 part 1
