@@ -44,52 +44,51 @@ fn day1_part2() {
 
 fn day2_part1() {
     let stdin = io::stdin();
-		let mut hor_pos = 0;
-		let mut depth = 0;
+    let mut hor_pos = 0;
+    let mut depth = 0;
     for line in stdin.lock().lines() {
         let current = line.unwrap().trim().parse::<String>().unwrap();
-				let mut split = current.split(" ");
-				let dir = split.next().unwrap();
-				let val = split.next().unwrap().trim().parse::<i64>().unwrap();
+        let mut split = current.split(" ");
+        let dir = split.next().unwrap();
+        let val = split.next().unwrap().trim().parse::<i64>().unwrap();
 
-				match dir {
-					"forward" => hor_pos += val,
-					"down" => depth += val,
-					"up" => depth -= val,
-					_ => panic!("invalid cmd")
-				}
+        match dir {
+            "forward" => hor_pos += val,
+            "down" => depth += val,
+            "up" => depth -= val,
+            _ => panic!("invalid cmd"),
+        }
     }
-		println!("hor: {}", hor_pos);
-		println!("depth: {}", depth);
-		println!("product: {}", hor_pos * depth);
+    println!("hor: {}", hor_pos);
+    println!("depth: {}", depth);
+    println!("product: {}", hor_pos * depth);
 }
 
 fn day2_part2() {
     let stdin = io::stdin();
-		let mut hor_pos = 0;
-		let mut depth = 0;
-		let mut aim = 0;
+    let mut hor_pos = 0;
+    let mut depth = 0;
+    let mut aim = 0;
     for line in stdin.lock().lines() {
         let current = line.unwrap().trim().parse::<String>().unwrap();
-				let mut split = current.split(" ");
-				let dir = split.next().unwrap();
-				let val = split.next().unwrap().trim().parse::<i64>().unwrap();
+        let mut split = current.split(" ");
+        let dir = split.next().unwrap();
+        let val = split.next().unwrap().trim().parse::<i64>().unwrap();
 
-				match dir {
-					"down" => aim += val,
-					"up" => aim -= val,
-					"forward" => {
-						hor_pos += val;
-						depth += aim * val;
-					}
-					_ => panic!("invalid cmd")
-				}
+        match dir {
+            "down" => aim += val,
+            "up" => aim -= val,
+            "forward" => {
+                hor_pos += val;
+                depth += aim * val;
+            }
+            _ => panic!("invalid cmd"),
+        }
     }
-		println!("hor: {}", hor_pos);
-		println!("depth: {}", depth);
-		println!("product: {}", hor_pos * depth);
+    println!("hor: {}", hor_pos);
+    println!("depth: {}", depth);
+    println!("product: {}", hor_pos * depth);
 }
-
 
 fn main() {
     let mut name = "".to_string();
@@ -106,6 +105,6 @@ fn main() {
         "day1part2" => day1_part2(),
         "day2part1" => day2_part1(),
         "day2part2" => day2_part2(),
-        _ => println!("nothing with that name")
+        _ => println!("nothing with that name"),
     }
 }
