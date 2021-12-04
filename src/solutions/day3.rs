@@ -57,7 +57,9 @@ pub fn part2() {
             .count();
         let popular_bit = if ones >= nums.len() - ones { '1' } else { '0' };
         nums.retain(|n| n.chars().nth(bit).unwrap() == popular_bit);
-				if nums.len() == 1 { break }
+        if nums.len() == 1 {
+            break;
+        }
     }
     let oxy_rating = nums.get(0).unwrap();
 
@@ -71,7 +73,9 @@ pub fn part2() {
             .count();
         let popular_bit = if ones < nums.len() - ones { '1' } else { '0' };
         nums.retain(|n| n.chars().nth(bit).unwrap() == popular_bit);
-				if nums.len() == 1 { break }
+        if nums.len() == 1 {
+            break;
+        }
     }
     let carbon_rating = nums.get(0).unwrap();
 
@@ -82,4 +86,3 @@ pub fn part2() {
     println!("carbon: {}", carbon_int);
     println!("product: {}", oxy_int * carbon_int);
 }
-

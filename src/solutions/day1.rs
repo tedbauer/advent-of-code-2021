@@ -37,4 +37,3 @@ pub fn part2() {
     }
     println!("{}", increases);
 }
-

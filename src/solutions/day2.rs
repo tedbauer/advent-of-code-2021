@@ -47,4 +47,3 @@ pub fn part2() {
     println!("depth: {}", depth);
     println!("product: {}", hor_pos * depth);
 }
-
