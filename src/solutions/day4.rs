@@ -37,7 +37,7 @@ impl Board {
     }
 }
 
-pub fn part1() {
+fn parse_input() -> (Vec<u32>, Vec<Board>) {
     let stdin = io::stdin();
 
     let inp = stdin
@@ -57,30 +57,33 @@ pub fn part1() {
 
     let mut boards: Vec<Board> = Vec::new();
 
-    {
-        loop {
-            let mut board = Board::new();
+    loop {
+        let mut board = Board::new();
 
-            if let None = input.next() {
-                break;
-            }
-
-            for row in 0..5 {
-                for (col, v) in input
-                    .next()
-                    .expect("missing board row")
-                    .split_whitespace()
-                    .map(|n| n.trim().parse::<u32>().unwrap())
-                    .enumerate()
-                {
-                    board.number_to_location.insert(v, (row as u8, col as u8));
-                    board.unmarked.insert(v);
-                }
-            }
-            boards.push(board);
+        if let None = input.next() {
+            break;
         }
+
+        for row in 0..5 {
+            for (col, v) in input
+                .next()
+                .expect("missing board row")
+                .split_whitespace()
+                .map(|n| n.trim().parse::<u32>().unwrap())
+                .enumerate()
+            {
+                board.number_to_location.insert(v, (row as u8, col as u8));
+                board.unmarked.insert(v);
+            }
+        }
+        boards.push(board);
     }
 
+    (drawn, boards)
+}
+
+pub fn part1() {
+    let (drawn, mut boards) = parse_input();
     for number in drawn {
         let mut won = false;
         for b in &mut boards {
@@ -95,6 +98,33 @@ pub fn part1() {
             }
         }
         if won {
+            break;
+        }
+    }
+}
+
+pub fn part2() {
+    let (drawn, mut boards) = parse_input();
+    let mut done = false;
+    let board_size = boards.len();
+    let mut won_boards: HashSet<u32> = HashSet::new();
+    for number in drawn {
+        for (i, b) in boards.iter_mut().enumerate() {
+            if !won_boards.contains(&(i as u32)) {
+                b.submit_move(number);
+                if b.winning() && won_boards.len() == board_size - 1 {
+                    let unmarked_sum: u32 = b.unmarked.iter().sum();
+                    println!("unmarked sum: {}", unmarked_sum);
+                    println!("winning no: {}", number);
+                    println!("product: {}", unmarked_sum * number);
+                    done = true;
+                    break;
+                } else if b.winning() {
+                    won_boards.insert(i as u32);
+                }
+            }
+        }
+        if done {
             break;
         }
     }

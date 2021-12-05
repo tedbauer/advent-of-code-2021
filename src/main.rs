@@ -22,6 +22,7 @@ fn main() {
         "day3part1" => day3::part1(),
         "day3part2" => day3::part2(),
         "day4part1" => day4::part1(),
+        "day4part2" => day4::part2(),
         _ => println!("nothing with that name"),
     }
 }
