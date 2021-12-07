@@ -2,7 +2,7 @@ extern crate argparse;
 use argparse::{ArgumentParser, Store};
 
 mod solutions;
-use solutions::{day1, day2, day3, day4, day5};
+use solutions::{day1, day2, day3, day4, day5, day6};
 
 fn main() {
     let mut name = "".to_string();
@@ -25,6 +25,8 @@ fn main() {
         "day4part2" => day4::part2(),
         "day5part1" => day5::part1(),
         "day5part2" => day5::part2(),
+        "day6part1" => day6::part1(),
+        "day6part2" => day6::part2(),
         _ => println!("nothing with that name"),
     }
 }
