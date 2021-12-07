@@ -25,7 +25,7 @@ pub fn part2() {
 
     let input = stdin.lock().lines().map(|l| l.unwrap()).next().unwrap();
 
-    let mut timers = input
+    let timers = input
         .split(",")
         .map(|n| n.trim().parse::<i64>().unwrap())
         .collect::<Vec<i64>>();
@@ -35,7 +35,7 @@ pub fn part2() {
     let mut fish_sum = 0;
     for timer in &timers {
         let memo: Memo = HashMap::new();
-        let (fish, memo) = fish_generated(*timer, DAYS, memo);
+        let (fish, _memo) = fish_generated(*timer, DAYS, memo);
         fish_sum += fish;
     }
 

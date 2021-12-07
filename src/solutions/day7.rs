@@ -25,15 +25,15 @@ pub fn part2() {
 
     timers.sort_unstable();
 
+    // Use the average, which seems to be a little off.
     let avg: i64 = ((timers.iter().sum::<i64>() as f64) / (timers.len() as f64)).round() as i64;
     let fuel_sum_avg = timers.iter().fold(0, |acc, n| acc + cost(*n, avg));
 
+    // Brute force.
     let max = timers.iter().max().unwrap();
-
     let mut smallest = None;
     for i in 0..*max {
         let fuel_sum = timers.iter().fold(0, |acc, n| acc + cost(*n, i));
-        println!("fuel sum for anchor {}: {}", i, fuel_sum);
         match smallest {
             None => smallest = Some(fuel_sum),
             Some(s) => {
@@ -44,11 +44,14 @@ pub fn part2() {
         }
     }
 
-		println!("smallest is: {}", smallest.unwrap());
-
-    println!("{:?}", timers);
-    println!("avg: {}", avg);
-    println!("fuel sum: {}", fuel_sum_avg);
+    println!(
+        "min fuel sum computed from brute force: {}",
+        smallest.unwrap()
+    );
+    println!(
+        "min fuel sum computed from avg of {}: {}",
+        avg, fuel_sum_avg
+    );
 }
 
 pub fn part1() {
