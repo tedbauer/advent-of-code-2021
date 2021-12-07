@@ -36,7 +36,7 @@ pub fn part2() {
     for timer in &timers {
         let memo: Memo = HashMap::new();
         let (fish, memo) = fish_generated(*timer, DAYS, memo);
-				fish_sum += fish;
+        fish_sum += fish;
     }
 
     println!("fish sum: {}", fish_sum + timers.len() as i64);
